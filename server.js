@@ -4,7 +4,9 @@ const {Server}=require('socket.io');
 const {Hand}=require('pokersolver');
 const crypto=require('crypto');
 const app=express();const server=http.createServer(app);const io=new Server(server);
-app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.sendFile(require('path').join(__dirname, 'index.html'));
+});
 const rooms=new Map();const BUYINS=[2000,4000];
 const suits=['s','h','d','c'],ranks='23456789TJQKA';
 function deck(){let a=[];for(const s of suits)for(const r of ranks)a.push(r+s);for(let i=a.length-1;i>0;i--){const j=crypto.randomInt(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
