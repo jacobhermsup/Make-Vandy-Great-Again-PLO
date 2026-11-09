@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: make-vandy-great-again-poker
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
